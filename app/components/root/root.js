@@ -1,79 +1,45 @@
 import './root.scss';
 
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import Movies from '../movies/movies';
-import TMDB from '../../core/tmdb';
+// import Movies from '../movies/movies';
+
 
 class Root extends React.Component {
 
   constructor() {
     super();
 
-    this.handleClick          = this.handleClick.bind(this);
-    this.getMostPopularMovies = this.getMostPopularMovies.bind(this);
+        this.state = {
 
-    this.state = {
-      loading: false
+        }
     }
-  }
 
-  getMostPopularMovies() {
-    this.setState({
-      loading: true
-    });
 
-    TMDB.get('/discover/movie?sort_by=popularity.desc')
-      .then((data) => {
-        // log `data` here to inspect the fetched data
-
-        this.setState({
-          loading: false
-        });
-
-        this.props.setMovies(data.results);
-      });
-  }
-
-  handleClick(e) {
-    this.getMostPopularMovies();
-  }
-
-  render() {
-    return (
-      <div className="root">
-        <h1 className="root-heading"
-            onClick={ this.handleClick }>
-          TMDB Hackathon!
-        </h1>
-
-        <p>Click the heading to see some action!</p>
-        <p>Fetched movies: { this.props.movies.length }</p>
-
-        { this.state.loading && 'Loading...' }
-
-        <Movies />
-      </div>
+    render() {
+        return (
+            <div></div>
     );
   }
 }
 
-function mapStateToProps({ movies }) {
+function mapStateToProps({movies, watchListData}) {
   return {
-    movies: movies
+    keyName: value,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setMovies(data) {
+    functionName(data) {
       dispatch({
-        type: 'SET_MOVIES',
-        data: data
+        type: 'TEXT',
+
       });
-    }
+    },
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);
+

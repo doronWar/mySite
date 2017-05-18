@@ -3,7 +3,8 @@ import { createStore, combineReducers } from 'redux';
 import movies from './reducers/movies';
 
 const reducer = combineReducers({
-  movies
+  movies,
+
 });
 
 const store = createStore(
